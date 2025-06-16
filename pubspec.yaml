@@ -1,0 +1,62 @@
+name: thou_art_i
+description: "Thou Art I"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #  DI
+  get_it: ^8.0.3
+  injectable: ^2.5.0
+  reflectable: ^4.0.12
+
+  # State Manager
+  flutter_bloc: ^9.0.0
+
+  #  Utility
+  intl: ^0.19.0
+  equatable: ^2.0.7
+
+  # Navigation
+  go_router: ^14.8.1
+
+  # Localization
+  flutter_localization: ^0.3.2
+
+  # Storage
+  drift: ^2.26.0
+  sqflite: ^2.4.1
+  sqlite3_flutter_libs: ^0.5.32
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: any
+  drift_dev: ^2.26.0
+  flutter_lints: ^4.0.0
+  flutter_gen_runner: any
+  injectable_generator: any
+
+flutter_gen:
+  output: lib/resources/generated
+  assets:
+    outputs:
+      class_name: ThouArtIAssets
+      directory_path_enabled: true
+
+  colors:
+    enabled: true
+    inputs:
+      - resources/colors/colors.xml
+    outputs:
+      class_name: ThouArtIColors
+
+flutter:
+  uses-material-design: true

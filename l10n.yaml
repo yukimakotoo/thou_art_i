@@ -1,0 +1,8 @@
+synthetic-package: false
+arb-dir: resources/strings/
+template-arb-file: app_br.arb
+output-dir: lib/resources/strings/
+output-class: ThouIArtStrings
+preferred-supported-locales:
+  - br
+output-localization-file: thou_i_art_strings.dart
