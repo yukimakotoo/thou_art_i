@@ -27,6 +27,7 @@ import 'package:thou_art_i/presentation/content/cubit/content_cubit.dart'
     as _i992;
 import 'package:thou_art_i/presentation/content/interactor/content_interactor.dart'
     as _i449;
+import 'package:thou_art_i/presentation/sheet/cubit/sheet_cubit.dart' as _i895;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -41,27 +42,24 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final thouArtIConfigurationModule = _$ThouArtIConfigurationModule();
     final databaseModule = _$DatabaseModule();
+    gh.factory<_i895.SheetCubit>(() => _i895.SheetCubit());
     gh.singleton<_i209.ThouArtIConfiguration>(
         () => thouArtIConfigurationModule.configuration());
-    gh.lazySingletonAsync<_i1057.AppDatabase>(() => databaseModule.appDatabase);
-    gh.lazySingletonAsync<_i789.ItemDatabaseDataSource>(() async =>
-        databaseModule
-            .itemDatabaseDataSource(await getAsync<_i1057.AppDatabase>()));
-    gh.lazySingletonAsync<_i744.GroupDatabaseDataSource>(() async =>
-        databaseModule
-            .groupDatabaseDataSource(await getAsync<_i1057.AppDatabase>()));
-    gh.factoryAsync<_i998.GroupRepository>(() async =>
-        _i998.GroupRepositoryImpl(
-            await getAsync<_i744.GroupDatabaseDataSource>()));
-    gh.factoryAsync<_i199.ItemRepository>(() async => _i199.ItemRepositoryImpl(
-        await getAsync<_i789.ItemDatabaseDataSource>()));
-    gh.factoryAsync<_i449.ContentInteractor>(
-        () async => _i449.ContentInteractorImpl(
-              await getAsync<_i199.ItemRepository>(),
-              await getAsync<_i998.GroupRepository>(),
-            ));
-    gh.factoryAsync<_i992.ContentCubit>(() async =>
-        _i992.ContentCubit(await getAsync<_i449.ContentInteractor>()));
+    gh.lazySingleton<_i1057.AppDatabase>(() => databaseModule.appDatabase);
+    gh.lazySingleton<_i789.ItemDatabaseDataSource>(
+        () => databaseModule.itemDatabaseDataSource(gh<_i1057.AppDatabase>()));
+    gh.lazySingleton<_i744.GroupDatabaseDataSource>(
+        () => databaseModule.groupDatabaseDataSource(gh<_i1057.AppDatabase>()));
+    gh.factory<_i998.GroupRepository>(
+        () => _i998.GroupRepositoryImpl(gh<_i744.GroupDatabaseDataSource>()));
+    gh.factory<_i199.ItemRepository>(
+        () => _i199.ItemRepositoryImpl(gh<_i789.ItemDatabaseDataSource>()));
+    gh.factory<_i449.ContentInteractor>(() => _i449.ContentInteractorImpl(
+          gh<_i199.ItemRepository>(),
+          gh<_i998.GroupRepository>(),
+        ));
+    gh.factory<_i992.ContentCubit>(
+        () => _i992.ContentCubit(gh<_i449.ContentInteractor>()));
     return this;
   }
 }

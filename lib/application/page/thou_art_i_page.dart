@@ -31,9 +31,9 @@ class _ThouArtIPageState extends State<ThouArtIPage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.light,
         statusBarColor: ThouArtIColors.background,
-        systemNavigationBarIconBrightness: Brightness.dark,
+        systemNavigationBarIconBrightness: Brightness.light,
         systemNavigationBarColor: ThouArtIColors.background,
         systemNavigationBarDividerColor: ThouArtIColors.background,
       ),
